@@ -40,48 +40,35 @@
       font-size: 16px;
       color: #0f0;
     }
+    form {
+      margin-top: 30px;
+    }
+    input, select, button {
+      margin: 5px;
+      padding: 10px;
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
   <h1>🎲 FlipNugz Dice Betting</h1>
-  <p>Select a number and enter your wallet address to reserve it. Send 1 SOL to: <b>YOUR_SOL_WALLET_ADDRESS</b></p>
+  <p>Pick a number (1–6) and enter your Solana wallet address. Send 1 SOL to: <b>YOUR_SOL_WALLET_ADDRESS</b></p>
 
-  <div class="numbers" id="numberGrid"></div>
-
-  <div style="margin-top: 20px;">
-    <input type="text" id="walletInput" placeholder="Enter your Solana wallet" style="padding: 10px; width: 300px;" />
-  </div>
+  <form action="https://formsubmit.co/247livebets@gmail.com" method="POST">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="text" name="wallet" placeholder="Your Solana Wallet" required>
+    <select name="number" required>
+      <option value="">Pick a Number</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+    </select>
+    <button type="submit">Reserve Number</button>
+  </form>
 
   <div id="confirmation"></div>
-
-  <script>
-    const numberGrid = document.getElementById('numberGrid');
-    const confirmation = document.getElementById('confirmation');
-    const walletInput = document.getElementById('walletInput');
-
-    const takenNumbers = [];
-
-    for (let i = 1; i <= 6; i++) {
-      const btn = document.createElement('button');
-      btn.textContent = i;
-      btn.className = 'number-button';
-      btn.onclick = () => {
-        const wallet = walletInput.value.trim();
-        if (!wallet) {
-          alert("Please enter your wallet address first.");
-          return;
-        }
-        if (takenNumbers.includes(i)) {
-          alert("This number is already taken.");
-          return;
-        }
-        takenNumbers.push(i);
-        btn.disabled = true;
-        confirmation.innerHTML = `✅ <b>Number ${i}</b> reserved for wallet: <b>${wallet}</b><br>Send 1 SOL to: <b>YOUR_SOL_WALLET_ADDRESS</b>`;
-      };
-      numberGrid.appendChild(btn);
-    }
-  </script>
 </body>
 </html>
-
